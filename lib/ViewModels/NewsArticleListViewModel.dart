@@ -8,12 +8,12 @@ class NewsArticleListViewModel extends ChangeNotifier {
   // also created a list of NewsArticleViewModel
   List<NewsArticleViewModel> articles = new List<NewsArticleViewModel>();
 
-  NewsArticleListViewModel() {
-    _populateHeadlines();
-  }
+//  NewsArticleListViewModel() {
+//    _populateHeadlines();
+//  }
 
   //this function is responsible for populating the top headlines..
-  Future<void> _populateHeadlines() async {
+  Future<void> populateHeadlines() async {
     List<NewsArticle> newsArticles = await WebService().fetchTopHeadlines();
 
     this.articles = newsArticles

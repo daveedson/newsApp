@@ -2,7 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:newsapp/ViewModels/NewsArticleListViewModel.dart';
 import 'package:provider/provider.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<NewsArticleListViewModel>(context, listen: false)
+        .populateHeadlines();
+  }
+
   @override
   Widget build(BuildContext context) {
     final viewModel =

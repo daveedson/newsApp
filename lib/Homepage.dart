@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:newsapp/NewsList.dart';
 import 'package:newsapp/ViewModels/NewsArticleListViewModel.dart';
 import 'package:provider/provider.dart';
 
@@ -15,33 +16,35 @@ class _HomePageState extends State<HomePage> {
         .populateHeadlines();
   }
 
+  final _controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final viewModel =
         Provider.of<NewsArticleListViewModel>(context, listen: true);
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Latest news'),
-      ),
-      body: ListView.builder(
-        itemCount: viewModel.articles.length,
-        itemBuilder: (context, index) {
-          final newsArticle = viewModel.articles[index];
-
-          return ListTile(
-            leading: Container(
-              width: 100,
-              height: 100,
-              child: newsArticle.urlToImage == null
-                  ? Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : Image.network(newsArticle.urlToImage),
+        appBar: AppBar(
+          title: Text('Latest news'),
+        ),
+        body: Column(
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: TextField(
+                controller: _controller,
+                decoration: InputDecoration(
+                    hintText: 'Search',
+                    icon: Icon(Icons.search),
+                    suffixIcon: IconButton(
+                      icon: Icon(Icons.clear),
+                      onPressed: () => _controller.clear(),
+                    )),
+              ),
             ),
-            title: Text(newsArticle.title),
-          );
-        },
-      ),
-    );
+            Expanded(
+              child: NewsList(articles: viewModel.articles),
+            ),
+          ],
+        ));
   }
 }

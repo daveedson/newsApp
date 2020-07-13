@@ -12,9 +12,10 @@ class WebService {
     if (response.statusCode == 200) {
       final result = jsonDecode(response.body);
       Iterable list = result['articles'];
-      list.map((articles) => NewsArticle.fromJSON(articles)).toList();
+      return list.map((articles) => NewsArticle.fromJSON(articles)).toList();
+    } else {
+      throw Exception('Failed to search');
     }
-    throw Exception('Failed to search');
   }
 
   //this method fetches the latest news from news api website.

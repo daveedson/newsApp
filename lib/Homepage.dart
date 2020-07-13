@@ -31,6 +31,7 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: EdgeInsets.all(8.0),
               child: TextField(
+                onSubmitted: _searchLatestNews,
                 controller: _controller,
                 decoration: InputDecoration(
                     hintText: 'Search',
@@ -46,5 +47,13 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ));
+  }
+
+  void _searchLatestNews(String keyword) {
+    final viewModel =
+        Provider.of<NewsArticleListViewModel>(context, listen: false);
+    if (keyword.isNotEmpty) {
+      viewModel.searchLatestNews(keyword);
+    }
   }
 }

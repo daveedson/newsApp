@@ -21,4 +21,13 @@ class NewsArticleListViewModel extends ChangeNotifier {
         .toList();
     notifyListeners();
   }
+
+  //this method enables search of different news with there key words..
+  Future<void> searchLatestNews(String keyword) async {
+    List<NewsArticle> searchNews = await WebService().searchHeadlines(keyword);
+    this.articles = searchNews
+        .map((newsArticles) => NewsArticleViewModel(newsArticle: newsArticles))
+        .toList();
+    notifyListeners();
+  }
 }

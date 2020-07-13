@@ -33,7 +33,9 @@ class _HomePageState extends State<HomePage> {
               width: 100,
               height: 100,
               child: newsArticle.urlToImage == null
-                  ? Image.asset("images/news.png")
+                  ? Center(
+                      child: CircularProgressIndicator(),
+                    )
                   : Image.network(newsArticle.urlToImage),
             ),
             title: Text(newsArticle.title),

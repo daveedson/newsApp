@@ -34,8 +34,8 @@ class NewsList extends StatelessWidget {
   }
 
   //this method transitions us to the  news detail Screen
-  Future<void> _showNewsDetails(
-      BuildContext context, NewsArticleViewModel newsArticle) async {
+  void _showNewsDetails(
+      BuildContext context, NewsArticleViewModel newsArticle) {
     Navigator.push(
       context,
       MaterialPageRoute(

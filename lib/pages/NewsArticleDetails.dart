@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newsapp/ViewModels/NewsArticleViewModel.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class NewsArticleDetails extends StatelessWidget {
   final NewsArticleViewModel articleViewModel;
@@ -14,6 +15,9 @@ class NewsArticleDetails extends StatelessWidget {
           this.articleViewModel.title,
           style: TextStyle(color: Colors.black54),
         ),
+      ),
+      body: WebView(
+        initialUrl: articleViewModel.url,
       ),
     );
   }

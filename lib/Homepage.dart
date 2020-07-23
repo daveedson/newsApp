@@ -66,7 +66,10 @@ class _HomePageState extends State<HomePage> {
         Provider.of<NewsArticleListViewModel>(context, listen: true);
     return Scaffold(
         appBar: AppBar(
-          title: Text('Latest news'),
+          title: Text(
+            'Latest news',
+            style: TextStyle(color: Colors.black54),
+          ),
         ),
         body: Column(
           children: <Widget>[

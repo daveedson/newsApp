@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:newsapp/pages/NewsArticleDetails.dart';
 
 import 'ViewModels/NewsArticleViewModel.dart';
 
@@ -26,8 +27,20 @@ class NewsList extends StatelessWidget {
                 : Image.network(newsArticle.urlToImage),
           ),
           title: Text(newsArticle.title),
+          onTap: () => _showNewsDetails(context, newsArticle),
         );
       },
+    );
+  }
+
+  //this method transitions us to the  news detail Screen
+  Future<void> _showNewsDetails(
+      BuildContext context, NewsArticleViewModel newsArticle) async {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => NewsArticleDetails(articleViewModel: newsArticle),
+      ),
     );
   }
 }
